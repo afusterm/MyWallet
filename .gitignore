@@ -27,6 +27,7 @@ xcuserdata/
 *.dSYM.zip
 *.dSYM
 
+<<<<<<< HEAD
 ## Playgrounds
 timeline.xctimeline
 playground.xcworkspace
@@ -37,6 +38,8 @@ playground.xcworkspace
 # Packages/
 .build/
 
+=======
+>>>>>>> 0d0c88fc0e5e56be97d6f31ef85052e48ce5abb5
 # CocoaPods
 #
 # We recommend against adding the Pods directory to your .gitignore. However
@@ -54,12 +57,17 @@ Carthage/Build
 
 # fastlane
 #
+<<<<<<< HEAD
 # It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
+=======
+# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the 
+>>>>>>> 0d0c88fc0e5e56be97d6f31ef85052e48ce5abb5
 # screenshots whenever they are needed.
 # For more information about the recommended setup visit:
 # https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Gitignore.md
 
 fastlane/report.xml
+<<<<<<< HEAD
 fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
@@ -67,3 +75,13 @@ fastlane/test_output
 #OSX Finder
 .DS_Store
 
+=======
+fastlane/screenshots
+
+#Code Injection
+#
+# After new code Injection tools there's a generated folder /iOSInjectionProject
+# https://github.com/johnno1962/injectionforxcode
+
+iOSInjectionProject/
+>>>>>>> 0d0c88fc0e5e56be97d6f31ef85052e48ce5abb5
