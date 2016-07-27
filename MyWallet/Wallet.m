@@ -86,6 +86,22 @@
     return [self.currenciesDict objectForKey:key];
 }
 
+-(NSUInteger) totalAmountForCurrency:(NSString *) currency {
+    NSArray *moneys = [self.currenciesDict objectForKey:currency];
+    NSUInteger total = 0;
+    
+    // calcular el total
+    for (Money *money in moneys) {
+        total += [money.amount integerValue];
+    }
+    
+    return total;
+}
+
+-(NSString *) currencyAtIndex:(NSUInteger) index {
+    return [[self.currenciesDict allKeys] objectAtIndex:index];
+}
+
 #pragma mark - Notifications
 
 -(void) subscribeToMemoryWarning:(NSNotificationCenter *) nc {

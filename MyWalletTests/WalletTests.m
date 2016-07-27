@@ -66,4 +66,9 @@
     XCTAssertEqual(2, [moneys count], @"There must be 2 moneys of EUR in the second currency");
 }
 
+-(void) testTotalAmountForCurrency {
+    NSUInteger total = [self.wallet totalAmountForCurrency:@"EUR"];
+    XCTAssertEqual(10, total, @"The total amount for euros currency must be 10");
+}
+
 @end

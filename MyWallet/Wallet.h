@@ -20,4 +20,8 @@
 
 -(NSArray *) moneysAtCurrency:(NSUInteger) index;
 
+-(NSUInteger) totalAmountForCurrency:(NSString *) currency;
+
+-(NSString *) currencyAtIndex:(NSUInteger) index;
+
 @end

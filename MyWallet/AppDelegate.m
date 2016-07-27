@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import "Wallet.h"
+#import "Broker.h"
+#import "WalletTableViewController.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +19,24 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    // crear el modelo
+    Wallet *wallet = [[Wallet alloc] initWithAmount:1 currency:@"USD"];
+    [wallet plus:[Money euroWithAmount:1]];
+    [wallet plus:[[Money alloc] initWithAmount:5 currency:@"JPY"]];
+    [wallet plus:[Money euroWithAmount:10]];
+    
+    // tasas de conversión
+    Broker *broker = [Broker new];
+    [broker addRate:2 fromCurrency:@"EUR" toCurrency:@"USD"];
+    [broker addRate:4 fromCurrency:@"EUR" toCurrency:@"JPY"];
+    [broker addRate:2 fromCurrency:@"USD" toCurrency:@"JPY"];
+    
+    // crear el view controller
+    UIViewController *VC = [[WalletTableViewController alloc] initWithModel:wallet broker:broker];
+    
+    self.window.rootViewController = VC;
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
