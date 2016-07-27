@@ -11,6 +11,7 @@
 
 @interface Wallet()
 @property (nonatomic, strong) NSMutableArray *moneys;
+@property (nonatomic, strong) NSMutableDictionary *currenciesDict;
 @end
 
 @implementation Wallet
@@ -20,6 +21,11 @@
         Money *money = [[Money alloc] initWithAmount:amount currency:currency];
         _moneys = [NSMutableArray array];
         [_moneys addObject:money];
+        
+        _currenciesDict = [NSMutableDictionary dictionary];
+        NSMutableArray *m = [NSMutableArray array];
+        [m addObject:money];
+        [_currenciesDict setObject:m forKey:[money currency]];
     }
     
     return self;
@@ -27,6 +33,17 @@
 
 -(id<Money>)plus:(Money*) money {
     [self.moneys addObject:money];
+    
+    // obtener el número de moneys de la divisa
+    NSMutableArray *m = [self.currenciesDict objectForKey:[money currency]];
+    
+    if (m == nil) {
+        m = [NSMutableArray array];
+        [self.currenciesDict setObject:m forKey:money.currency];
+    }
+    
+    [m addObject:money];
+    
     return self;
 }
 
@@ -56,6 +73,17 @@
 
 -(NSUInteger) count {
     return [self.moneys count];
+}
+
+-(NSUInteger) currencies {
+    return [[self.currenciesDict allKeys] count];
+}
+
+#pragma mark - Query methods
+
+-(NSArray *) moneysAtCurrency:(NSUInteger) index {
+    NSString *key = [[self.currenciesDict allKeys] objectAtIndex:index];
+    return [self.currenciesDict objectForKey:key];
 }
 
 #pragma mark - Notifications

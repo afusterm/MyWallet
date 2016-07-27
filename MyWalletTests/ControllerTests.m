@@ -36,6 +36,8 @@
     
     self.wallet = [[Wallet alloc] initWithAmount:1 currency:@"USD"];
     [self.wallet plus:[Money euroWithAmount:1]];
+    [self.wallet plus:[[Money alloc] initWithAmount:5 currency:@"JPY"]];
+    [self.wallet plus:[Money euroWithAmount:10]];
     self.walletVC = [[WalletTableViewController alloc] initWithModel:self.wallet];
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero];
 }
@@ -59,18 +61,29 @@
                           @"Button and label should have the same text");
 }
 
--(void) testThatTableHasOneSection {
-    // no es necesario pasar una tabla al controlador. Solo queremos saber cuántas
-    // secciones vamos a meter.
-    NSUInteger sections = [self.walletVC numberOfSectionsInTableView:self.tableView];
-    
-    XCTAssertEqual(sections, 1, @"There can only be one");
+-(void) testThatNumberOfCellsIsNumberOfMoneysPlusOne {
+    XCTAssertEqual(2,
+                   [self.walletVC tableView:self.tableView numberOfRowsInSection:0],
+                   @"Number of cells in the first section is 2 ($1 and the total");
 }
 
--(void) testThatNumberOfCellsIsNumberOfMoneysPlusOne {
-    XCTAssertEqual(self.wallet.count + 1,
-                   [self.walletVC tableView:self.tableView numberOfRowsInSection:0],
-                   @"Number of cells is the number of moneys plus 1 (the total)");
+-(void) testThatTableHasTheNeededSections {
+    NSUInteger sections = [self.walletVC numberOfSectionsInTableView:self.tableView];
+    
+    XCTAssertEqual(sections, 4, @"The number of sections must be three (Dollars, Euros, Yen and Total");
+}
+
+-(void) testThatTableWithEmptyWalleHasOneSection {
+    Wallet *w = [Wallet new];
+    WalletTableViewController *vc = [[WalletTableViewController alloc] initWithModel:w];
+    
+    XCTAssertEqual(1, [vc tableView:self.tableView numberOfRowsInSection:0],
+                   @"The number of sections in an empty wallet must be 1 (the total)");
+}
+
+-(void) testThatTheNumberOfCellsInSectionIsNumberOfMoneysAtCurrency {
+    XCTAssertEqual(3, [self.walletVC tableView:self.tableView numberOfRowsInSection:1],
+                   @"In the second section (EUR) must be three cells (€1, €10 and total");
 }
 
 @end
