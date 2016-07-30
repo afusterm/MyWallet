@@ -24,4 +24,6 @@
 
 -(NSString *) currencyAtIndex:(NSUInteger) index;
 
+-(BOOL) takeMoney:(Money *) money;
+
 @end

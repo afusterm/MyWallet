@@ -17,14 +17,33 @@
 
 @implementation Money
 
+/**
+ *  Crea un objeto Money en la divisa EUR.
+ *
+ *  @param amount Cantidad de dinero en euros.
+ *  @return Nuevo objeto Money en euros.
+ */
 +(id) euroWithAmount:(NSInteger) amount {
     return [[Money alloc] initWithAmount:amount currency:@"EUR"];
 }
 
+/**
+ *  Crea un objeto Money en la divisa USD.
+ *
+ *  @param amount Cantidad de dinero en dólares.
+ *  @return Nuevo objeto Money en dólares.
+ */
 +(id) dollarWithAmount:(NSInteger) amount {
     return [[Money alloc] initWithAmount:amount currency:@"USD"];
 }
 
+/**
+ *  Crea un objeto Money con la cantidad y divisa indicadas.
+ *
+ *  @param amount Cantidad de dinero.
+ *  @param currency Divisa del dinero.
+ *  @return Nuevo objeto Money con la cantidad y divisa indicadas.
+ */
 -(id) initWithAmount:(NSInteger) amount currency:(NSString *) currency {
     if (self = [super init]) {
         _amount = @(amount);
@@ -34,6 +53,12 @@
     return self;
 }
 
+/**
+ *  Multiplica el dinero por el parámetro pasado.
+ *
+ *  @param multiplier Cantidad por la que se desea multiplicar el dinero.
+ *  @return Nuevo objeto Money con el resultado de la operación.
+ */
 -(id<Money>) times:(NSInteger) multiplier {
     Money *newMoney = [[Money alloc]
                        initWithAmount:[self.amount integerValue] * multiplier currency:self.currency];
@@ -41,6 +66,12 @@
     
 }
 
+/**
+ *  Suma otro objeto Money al actual y devuelve el resultado en un nuevo objeto.
+ *
+ *  @param other Objeto Money que se quiere sumar.
+ *  @return Nuevo objeto Money con el resultado.
+ */
 -(id<Money>) plus:(Money *) other {
     NSInteger totalAmount = [self.amount integerValue] + [other.amount integerValue];
     Money *total = [[Money alloc] initWithAmount:totalAmount
@@ -49,6 +80,14 @@
     return total;
 }
 
+/**
+ *  Convierte el dinero del objeto Money a la divisa indicada utilizando la tasa de
+ *  conversión del objeto broker.
+ *
+ *  @param currency Divisa a la que se quiere convertir.
+ *  @param broker Broker que contiene la tasa de conversión de una divisa a otra.
+ *  @return Nuevo objeto Money con el dinero equivalente en la nueva divisa.
+ */
 -(id<Money>) reduceToCurrency:(NSString *) currency withBroker:(Broker*) broker {
     Money *result;
     double rate = [[broker.rates objectForKey:[broker keyFromCurrency:self.currency
@@ -73,6 +112,9 @@
 
 #pragma mark - OVerwritten
 
+/**
+ *  @return Cadena descriptiva con la forma: <Money: Divisa Cantidad>
+ */
 -(NSString *) description {
     return [NSString stringWithFormat:@"<%@: %@ %@>", [self class], self.currency, self.amount];
 }

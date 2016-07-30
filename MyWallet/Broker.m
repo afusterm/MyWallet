@@ -14,6 +14,11 @@
 
 @implementation Broker
 
+/**
+ *  Crea un nuevo objeto Broker.
+ *
+ *  @return Nuevo objeto Broker.
+ */
 -(id) init {
     if (self = [super init]) {
         _rates = [@{} mutableCopy];
@@ -22,6 +27,13 @@
     return self;
 }
 
+/**
+ *  Envía el mensaje reduce al objeto que implementa Money.
+ *
+ *  @param money Objeto que implementa el protocolo Money al que se le reenviará el mensaje reduce.
+ *  @param currency Divisa del objeto Money.
+ *  @return Objeto que implementa Money que devuelve el mensaje enviado a money.
+ */
 -(id<Money>) reduce:(id<Money>) money
        toCurrency:(NSString *) currency {
     
@@ -29,6 +41,13 @@
     return [money reduceToCurrency:currency withBroker:self];
 }
 
+/**
+ *  Añade un ratio de conversión.
+ *
+ *  @param rate Ratio de conversión.
+ *  @param Divisa que se va a convertir.
+ *  @param Divisa a la que se va a convertir la divisa origen.
+ */
 -(void) addRate:(NSInteger) rate
    fromCurrency:(NSString *) fromCurrency
      toCurrency:(NSString *) toCurrency {

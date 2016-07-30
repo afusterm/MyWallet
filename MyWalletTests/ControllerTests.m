@@ -82,7 +82,7 @@
     XCTAssertEqual(sections, 4, @"The number of sections must be three (Dollars, Euros, Yen and Total");
 }
 
--(void) testThatTableWithEmptyWalleHasOneSection {
+-(void) testThatTableWithEmptyWalletHasOneSection {
     Wallet *w = [Wallet new];
     Broker *b = [Broker new];
     WalletTableViewController *vc = [[WalletTableViewController alloc] initWithModel:w broker:b];

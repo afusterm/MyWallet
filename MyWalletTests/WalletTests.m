@@ -71,4 +71,29 @@
     XCTAssertEqual(10, total, @"The total amount for euros currency must be 10");
 }
 
+-(void) testTake20EurosFromWalletWith40 {
+    Wallet *w = [[Wallet alloc] initWithAmount:20 currency:@"EUR"];
+    [w plus:[Money euroWithAmount:20]];
+    
+    Money *m = [Money euroWithAmount:20];
+    [w takeMoney:m];
+    
+    XCTAssertEqual(20, [w totalAmountForCurrency:@"EUR"], @"The wallet has to have 20 EUR");
+}
+
+-(void) testTake10EurosFromWalletWith20And5 {
+    Wallet *w = [[Wallet alloc] initWithAmount:20 currency:@"EUR"];
+    [w plus:[Money euroWithAmount:5]];
+    [w takeMoney:[Money euroWithAmount:10]];
+    NSUInteger amountInWallet = [w totalAmountForCurrency:@"EUR"];
+    
+    XCTAssertNotEqual(15, amountInWallet, @"The amount in the wallet can't be €15");
+    XCTAssertEqual(25, amountInWallet, @"The amount in the wallet must be €25");
+}
+
+-(void) testThatWeCantTake10EurosInAWalletWith5 {
+    Wallet *w = [[Wallet alloc] initWithAmount:5 currency:@"EUR"];
+    XCTAssertFalse([w takeMoney:[Money euroWithAmount:10]], @"We can't take €10 in a wallet with €5");
+}
+
 @end

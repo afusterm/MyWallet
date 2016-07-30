@@ -63,7 +63,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                       reuseIdentifier:cellIdentifier];
     }
     
@@ -84,6 +84,7 @@
             NSNumber *total = [NSNumber numberWithInt:[self.model totalAmountForCurrency:money.currency]];
             cell.textLabel.text = [[[total description] stringByAppendingString:@" "]
                                    stringByAppendingString:money.currency];
+            cell.detailTextLabel.text = @"Subtotal";
         } else  {
             // cualquier otra celda
             money = [moneys objectAtIndex:indexPath.row];

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A90CBBCB1D4D0F05000D666D /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = A90CBBCA1D4D0F05000D666D /* README.md */; };
 		A9163AE11D3D6D8500C24968 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A9163AE01D3D6D8500C24968 /* main.m */; };
 		A9163AE41D3D6D8500C24968 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A9163AE31D3D6D8500C24968 /* AppDelegate.m */; };
 		A9163AEA1D3D6D8500C24968 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9163AE81D3D6D8500C24968 /* Main.storyboard */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A90CBBCA1D4D0F05000D666D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A9163ADC1D3D6D8500C24968 /* MyWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9163AE01D3D6D8500C24968 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A9163AE21D3D6D8500C24968 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				A9163AED1D3D6D8500C24968 /* LaunchScreen.storyboard */,
 				A9163AF01D3D6D8500C24968 /* Info.plist */,
 				A9163ADF1D3D6D8500C24968 /* Supporting Files */,
+				A90CBBCA1D4D0F05000D666D /* README.md */,
 			);
 			path = MyWallet;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				A9163AE41D3D6D8500C24968 /* AppDelegate.m in Sources */,
 				A92FFF101D43BEC800E1706D /* SimpleViewController.m in Sources */,
 				A92FFF041D434C6F00E1706D /* Broker.m in Sources */,
+				A90CBBCB1D4D0F05000D666D /* README.md in Sources */,
 				A92FFF191D43CB8900E1706D /* WalletTableViewController.m in Sources */,
 				A9163AE11D3D6D8500C24968 /* main.m in Sources */,
 			);
